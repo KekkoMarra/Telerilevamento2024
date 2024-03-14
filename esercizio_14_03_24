@@ -1,0 +1,89 @@
+METTI  I COMMENTI E VEDI L'ES DA DUCCIO
+> mato <- im.import("matogrosso_ast_2006209_lrg.jpg")
+> b2 <- im.import("sentinel.dolomites.b2.tif") 
+> cl <- colorRampPalette(c("black", "grey", "light grey")) (100)
+> plot(b2, col=cl)
+> b3 <- im.import("sentinel.dolomites.b3.tif") 
+> q()
+> plot(b3, col=cl)
+> b4 <- im.import("sentinel.dolomites.b4.tif") 
+> plot(b4, col=cl)
+> 
+> b8 <- im.import("sentinel.dolomites.b8.tif") 
+> plot(b8, col=cl)
+> rm(list=ls(all=TRUE))
+> ls()
+character(0)
+> library(terra)
+> library(imageRy)
+> library(imageRyd)
+Errore in library(imageRyd) : non c'è alcun pacchetto chiamato ‘imageRyd’
+> im.list
+function () 
+{
+    list.files(system.file("images", package = "imageRy"))
+}
+<bytecode: 0x000001cedf2ad988>
+<environment: namespace:imageRy>
+> im.list()
+ [1] "dolansprings_oli_2013088_canyon_lrg.jpg"           
+ [2] "EN_01.png"                                         
+ [3] "EN_02.png"                                         
+ [4] "EN_03.png"                                         
+ [5] "EN_04.png"                                         
+ [6] "EN_05.png"                                         
+ [7] "EN_06.png"                                         
+ [8] "EN_07.png"                                         
+ [9] "EN_08.png"                                         
+[10] "EN_09.png"                                         
+[11] "EN_10.png"                                         
+[12] "EN_11.png"                                         
+[13] "EN_12.png"                                         
+[14] "EN_13.png"                                         
+[15] "greenland.2000.tif"                                
+[16] "greenland.2005.tif"                                
+[17] "greenland.2010.tif"                                
+[18] "greenland.2015.tif"                                
+[19] "info.md"                                           
+[20] "iss063e039892_lrg.jpg"                             
+[21] "matogrosso_ast_2006209_lrg.jpg"                    
+[22] "matogrosso_l5_1992219_lrg.jpg"                     
+[23] "NDVI_rainbow.png"                                  
+[24] "NDVI_rainbow_legend.png"                           
+[25] "sentinel.dolomites.b2.tif"                         
+[26] "sentinel.dolomites.b3.tif"                         
+[27] "sentinel.dolomites.b4.tif"                         
+[28] "sentinel.dolomites.b8.tif"                         
+[29] "sentinel.png"                                      
+[30] "Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg"
+> b2 <- im.import("sentinel.dolomites.b2.tif")
+> clg <- colorRampPalette(c("black", "grey", "light grey"))(3)
+> plot(b2, col=clg)
+> clg <- colorRampPalette(c("black", "grey", "light grey"))(100)
+> plot(b2, col=clg)
+> clcyan <- colorRampPalette(c("magenta", "cyan4", "cyan"))(100)
+> clch <- colorRampPalette(c("magenta", "cyan4", "cyan", "chartreuse"))(100)
+> b3 <- im.import("sentinel.dolomites.b3.tif")
+> b4 <- im.import("sentinel.dolomites.b4.tif")
+> b8 <- im.import("sentinel.dolomites.b8.tif")
+> plot(b8, col=clch)
+> 
+> #multiframe
+> par(mfrow=c(2,2))
+> plot(b2, col=clch)
+> plot(b3, col=clch)
+> plot(b4, col=clch)
+> plot(b8, col=clch)
+> 
+#exercise: metti tutti i plot su di un'unica riga
+> par(mfrow=c(1,4))
+> plot(b2, col=clch)
+> plot(b3, col=clch)
+> plot(b4, col=clch)
+> plot(b8, col=clch)
+
+#let's make a satellite image --> stack()
+stacksent<- c(b2, b3, b4, b8)
+plot(stacksent, col=clch)
+
+plot(stacksent[[4]], col=clch)
